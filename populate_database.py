@@ -13,7 +13,7 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 device = "cuda" if torch.cuda.is_available() else "cpu"
 print(f"Using device: {device}")
 
-CHROMA_PATH = "C:/Users/rajee/OneDrive/Desktop/db"
+CHROMA_PATH = "db"
 DATA_PATH = "C:/Users/rajee/OneDrive/Desktop"
 
 
@@ -51,7 +51,7 @@ def add_to_chroma(chunks: list[Document]):
     # Load the Hugging Face embedding model with the device set for CUDA.
     embedding_function = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2", model_kwargs={"device": device})
 
-    # Load the existing database.
+    # Load the existing database (Chroma with the new interface)
     db = Chroma(
         persist_directory=CHROMA_PATH, embedding_function=embedding_function
     )
@@ -74,7 +74,7 @@ def add_to_chroma(chunks: list[Document]):
         print(f"👉 Adding new documents: {len(new_chunks)}")
         new_chunk_ids = [chunk.metadata["id"] for chunk in new_chunks]
         db.add_documents(new_chunks, ids=new_chunk_ids)
-        db.persist()
+        db.save()  # Use the `save()` method instead of `persist()`
     else:
         print("✅ No new documents to add")
 
