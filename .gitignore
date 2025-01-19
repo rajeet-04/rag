@@ -1,0 +1,4 @@
+*.pyc
+.DS_Store
+backup
+../rag-tutorial-v2/chroma
