@@ -1,5 +1,12 @@
-pypdf
-langchain
-chromadb # Vector storage
-pytest
-boto3
+EbookLib==0.18
+langchain==0.3.15
+langchain_chroma==0.2.0
+markdownify==0.14.1
+openpyxl==3.1.5
+pdfminer.six==20240706
+pypandoc==1.15
+python_docx==1.1.2
+python_pptx==1.0.2
+Requests==2.32.3
+sentence_transformers==3.3.1
+torch==2.5.1+cu118
